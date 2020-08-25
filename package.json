@@ -1,25 +1,23 @@
 {
-  "name": "mj-xgplayer",
-  "version": "0.1.0",
+  "name": "mj-inphase-component",
+  "version": "0.1.4",
   "description": "Used for magic mirror video playback plug-in",
   "private": false,
   "keywords": [
     "xgplayer",
     "mj-xgplayer",
-    "player"
+    "player",
+    "mj-inphase-component"
   ],
-  "main": "dist/AutoForm.common.js",
+  "main": "lib/mj-inphase-component.umd.min.js",
+  "style": "lib/mj-inphase-component.css",
   "author": "wangxianmiao",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wxmhappyl123/mj-xgplayer.git"
-  },
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name vcolorpicker --dest lib  packages/index.js"
+    "lib": "vue-cli-service build --target lib --name mj-inphase-component --dest lib  packages/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
