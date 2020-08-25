@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Demo from '../ourPlayer/demo'
-import Mobile from '../ourPlayer/mobileDemo'
+import Demo from '../../packages/ourPlayer/demo'
+import Mobile from '../../packages/ourPlayer/mobileDemo'
 
 Vue.use(Router)
 

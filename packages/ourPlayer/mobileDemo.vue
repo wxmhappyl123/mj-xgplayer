@@ -18,7 +18,7 @@
 
 <script>
   // 引入inphase视频组件
-  import InphasePlayer from '.'
+  import InphasePlayer from './index'
   // 测试视频数据
   import m3u8VideoData from './assets/data/m3u8VideoData'
   // import mp4VideoData from './assets/data/mp4VideoData'
