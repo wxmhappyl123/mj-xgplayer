@@ -1,4 +1,4 @@
-// 导入颜色选择器组件
+// 导入视频播放组件
 import inphasePlayer from './ourPlayer'
 
 // 存储组件列表
