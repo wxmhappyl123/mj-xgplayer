@@ -1,5 +1,23 @@
 # 起步
-安装西瓜视频
+安装inphase-component组件
+```
+ npm i mj-inphase-component
+```
+引用main.js中引入样式
+```
+import 'mj-inphase-component/lib/mj-inphase-component.css';
+```
+全局注册
+```
+import mj-inphase-component from 'mj-inphase-component';
+Vue.use(mj-inphase-component);
+```
+部分引用
+```
+import {inphase-player} from 'mj-inphase-component';
+```
+inphase-player 是依赖于西瓜视频 虽然直接 install了mj-inphase-component也会自动下载西瓜视频相关组件
+如果报错也可以按照下面步骤从新安装西瓜视频相关组件，一般可以省略
 ```
  npm i xgplayer
 ```
@@ -14,14 +32,6 @@ npm i xgplayer-mp4
 安装flv插件
 ```
 npm i xgplayer-flv.js
-```
-将整个`ourPlayer`文件夹放入组件目录`components`下，使用该组件
-```js
-import InphasePlayer from '../components/ourPlayer'
-```
-在`main.js`中引入`iconfont`文件
-```js
-import './ourPlayer/assets/iconfont/iconfont.css'
 ```
 如果需要自定义样式，安装以下`loader`（自定义样式功能暂未开放）
 ```
