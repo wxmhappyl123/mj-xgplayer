@@ -60,7 +60,7 @@ export default [
     ],
     cameraId: '1002',
     cameraName: '叶问4',
-    url: resolve('叶问4'),
+    url: 'http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4',
     danmu: {
       comments: [
         {
@@ -243,7 +243,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '惊奇队长',
-    url: resolve('惊奇队长'),
+    url: 'http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4',
     danmu: {
       comments: [
         {
@@ -280,7 +280,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '扫毒',
-    url: resolve('扫毒'),
+    url: 'http://vfx.mtime.cn/Video/2019/03/18/mp4/190318214226685784.mp4',
     danmu: {
       comments: [
         {
@@ -354,7 +354,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '玩具总动员',
-    url: resolve('玩具总动员'),
+    url: 'http://vfx.mtime.cn/Video/2019/03/19/mp4/190319212559089721.mp4',
     danmu: {
       comments: [
         {
@@ -391,7 +391,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '紧急救援',
-    url: resolve('紧急救援'),
+    url: 'http://vfx.mtime.cn/Video/2019/03/19/mp4/190319222227698228.mp4',
     danmu: {
       comments: [
         {
@@ -465,7 +465,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '莱昂纳多',
-    url: resolve('莱昂纳多'),
+    url: 'http://vfx.mtime.cn/Video/2019/03/21/mp4/190321153853126488.mp4',
     danmu: {
       comments: [
         {

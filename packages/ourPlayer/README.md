@@ -141,13 +141,6 @@ npm i node-sass sass-loader raw-loader
 - 参考值：true | false
 - 描述：是否开启自动播放功能。
 
-### 跨域
-- 配置项：`cross-origin`
-- 类型：Boolean
-- 默认值：true
-- 参考值：true | false
-- 描述：是否跨域。
-
 ### 唯一视频播放
 - 配置项：`only-one-play`
 - 类型：Boolean
@@ -232,6 +225,15 @@ npm i node-sass sass-loader raw-loader
 - 返回类型：(Object, String)
 - 返回值：第一个参数为出错的当前视频配置对象，第二个参数为错误信息
 - 描述：当视频播放出错时，该事件触发。
+
+## 方法
+|    方法名     | 用法                                | 描述                                   |
+| :-----------: | ----------------------------------- | -------------------------------------- |
+| destroyPlayer | `this.$refs.player.destroyPlayer()` | 销毁当前视频实例（仅适用于单个视频源） |
+|               |                                     |                                        |
+|               |                                     |                                        |
+
+
 
 # 功能详细及注意事项
 ### 分屏

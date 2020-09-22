@@ -16,7 +16,7 @@ export default [
     ],
     cameraId: '1001',
     cameraName: '11111',
-    url: 'http://222.213.16.54:20301/1025592edf6ac24c2df835e266534f0b.m3u8',
+    url: 'http://182.145.195.238:1936/hls/08103021122A63A2A00.m3u8',
     // url: 'rtsp://Inphase:2KE496r8a@182.145.195.233:9500/DevCode=08102021122A3A0C400/DevAor=08102021122A3A0C400/StreamIndex=0',
     danmu: {
       comments: [
@@ -55,7 +55,7 @@ export default [
     ],
     cameraId: '1002',
     cameraName: '22222',
-    url: 'http://222.213.16.54:20301/4375a5fca801cd5818a50d879fcf9542.m3u8',
+    url: 'http://182.145.195.238:1936/hls/08103021122A63A2E00.m3u8',
     danmu: {
       comments: [
         {
@@ -92,7 +92,7 @@ export default [
     ],
     cameraId: '1003',
     cameraName: '333333',
-    url: 'http://222.213.16.54:20301/943d867256f82d5b5ca0c8d2338c39f4.m3u8',
+    url: 'http://182.145.195.238:1936/hls/08103021122A6364C00.m3u8',
     danmu: {
       comments: [
         {
@@ -127,7 +127,7 @@ export default [
     ],
     cameraId: '1004',
     cameraName: '444444',
-    url: 'http://222.213.16.54:20301/4ea32d207cedab9def466d3170a7d396.m3u8',
+    url: 'http://182.145.195.238:1936/hls/08103021122A6365300.m3u8',
     danmu: {
       comments: [
         {
@@ -164,7 +164,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '555555',
-    url: 'http://222.213.16.54:20301/bc03b46d92a1a2f504e6d6dbd3d78aa4.m3u8',
+    url: 'http://182.145.195.238:1936/hls/08103021122A63A2400.m3u8',
     danmu: {
       comments: [
         {
@@ -201,7 +201,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '666666',
-    url: 'http://222.213.16.54:20301/5b9b8d1cb4b063e9cd776a62a681d643.m3u8',
+    url: 'http://182.145.195.238:1936/hls/08103021122A63A2800.m3u8',
     danmu: {
       comments: [
         {
@@ -238,7 +238,7 @@ export default [
     ],
     cameraId: '1005',
     cameraName: '777777',
-    url: '"http://222.213.16.54:20301/38ce689b37c82173cc3715d5234039a7.m3u8',
+    url: 'http://182.145.195.238:1936/hls/08103021122A6364D00.m3u8',
     danmu: {
       comments: [
         {

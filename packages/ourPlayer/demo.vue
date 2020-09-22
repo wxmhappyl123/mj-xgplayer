@@ -91,8 +91,8 @@
       }
     },
     created() {
-        // this.videoData = m3u8VideoData
-        this.videoData = mp4VideoData
+        this.videoData = m3u8VideoData
+        // this.videoData = mp4VideoData
     },
     methods: {
       /**

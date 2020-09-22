@@ -62,7 +62,6 @@
     playsinline: true, // 开启ios和微信的内联模式
     screenShot: true,// 是否开启截图
     autoplay: true, // 是否自动播放
-    crossOrigin: true, // 是否跨域
     download: true, //是否下载视频
     pip: false, // 是否开启画中画
     definitionActive: 'hover', // 修改清晰度控件的触发方式
@@ -211,13 +210,6 @@
        * 是否开启自动播放
        */
       autoplay: {
-        type: Boolean,
-        default: true
-      },
-      /**
-       * 是否开启跨域
-       */
-      crossOrigin: {
         type: Boolean,
         default: true
       },
@@ -419,6 +411,16 @@
     },
     methods: {
       /**
+       * @description 销毁视频实例
+       * @return {null}
+       */
+      destroyPlayer() {
+        this.player.src = ''
+        this.player.config.url = ''
+        this.player.destroy()
+        this.player = null
+      },
+      /**
        * @description 切换视频源相关参数
        * @param index {Number} - 首个关闭的视频数组下标
        * @return {null}
@@ -463,7 +465,6 @@
         videoOptions.download = this.live ? false : this.download
         videoOptions.screenShot = this.screenShot
         videoOptions.autoplay = this.autoplay
-        videoOptions.crossOrigin = this.crossOrigin
         videoOptions.definitionActive = this.definitionActive
         videoOptions.defaultPlaybackRate = this.defaultPlaybackRate
       },
@@ -621,7 +622,9 @@
        */
       createPlayers(options, length) {
         const logoBoxDom = document.getElementById(`logoBox${length}-${this.hashStr}`)
-        const currPlayer = this.players[length - 1]
+        this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)
+
+        /*const currPlayer = this.players[length - 1]
         // 当前player实例已存在，则重新拉流
         if (currPlayer) {
           currPlayer.src = options.url
@@ -629,7 +632,7 @@
           currPlayer.config.url = options.url
         } else {
           this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)
-        }
+        }*/
         // 处理播放器监听事件
         this.handlePlayerEvents(this.players[length - 1], logoBoxDom)
         // 处理视频清晰度
@@ -642,13 +645,15 @@
        */
       createPlayer(options) {
         const logoBoxDom = document.getElementById(`logoBox1-${this.hashStr}`)
-        // 当前player实例已存在，则重新拉流
+        this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
+
+        /*// 当前player实例已存在，则重新拉流
         if (this.player) {
           this.player.src = options.url
           this.player.config.url = options.url
         } else {
           this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
-        }
+        }*/
         // 处理播放器监听事件
         this.handlePlayerEvents(this.player, logoBoxDom)
         // 处理视频清晰度
