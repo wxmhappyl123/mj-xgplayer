@@ -24,7 +24,7 @@
       </div>
       <div class="play-content">
         <!--多个视频源测试-->
-        <inphase-player
+        <!--<inphase-player
           :live="false"
           :split-screen="splitScreen"
           :video-list="videoList"
@@ -40,11 +40,12 @@
           <template #logo>
             <img :src="logo" alt="logo" width="80px" height="80px">
           </template>
-        </inphase-player>
+        </inphase-player>-->
 
         <!--单个视频源测试-->
-       <!-- <inphase-player
+        <inphase-player
           :live="false"
+          :video-name="name"
           :video-url="url"
           :definition-list="definitionList"
           :poster="poster"
@@ -52,7 +53,7 @@
           <template #logo>
             <img :src="logo" alt="logo" width="80px" height="80px">
           </template>
-        </inphase-player>-->
+        </inphase-player>
 
       </div>
     </div>
@@ -82,6 +83,8 @@
            {name: '高清', url: ''},
            {name: '超清', url: ''}
         ],
+        // 视频名称
+        name: '',
         // 弹幕数据
         danmu: [],
         // 弹幕内容
@@ -91,8 +94,8 @@
       }
     },
     created() {
-        this.videoData = m3u8VideoData
-        // this.videoData = mp4VideoData
+        // this.videoData = m3u8VideoData
+        this.videoData = mp4VideoData
     },
     methods: {
       /**
@@ -110,10 +113,11 @@
        */
       toggleCamera(item) {
         // 多个视频源播放
-        this.videoList.push(item)
+        // this.videoList.push(item)
         // 单个视频源切换,需要同时切换清晰度列表
-        /*this.url = item.url
-        this.definitionList = item.definitionList*/
+        this.url = item.url
+        this.name = item.name
+        this.definitionList = item.definitionList
       },
       /**
        * @description 处理视频重复

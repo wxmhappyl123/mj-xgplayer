@@ -36,10 +36,17 @@ npm i node-sass sass-loader raw-loader
 - 参考值：1 | 4 | 9 | 16
 - 描述：传入参考值以外的值控制台会报错，值默认回到1。
 
+### 视频名称
+
+- 配置项：`video-name`
+- 类型：String
+- 默认值：""
+- 描述：在播放器上显示该视频源的名称，仅适用于单个视频源。多个视频源需要通过新增对象属性`name`来使用。
+
 ### 视频源
 - 配置项：`video-url`
 - 类型: String
-- 默认值：''
+- 默认值：""
 - 描述：单个视频源。不支持分屏功能。该参数不能与`video-list`混用，否则可能会有意料之外的错误。
 
 ### 视频数据
@@ -47,7 +54,7 @@ npm i node-sass sass-loader raw-loader
 - 类型: Array< Object >
 - 默认值：[]
 - 参考数据结构：
-```
+```js
 [
     {
         url: '', // 摄像头视频或直播流url
@@ -65,6 +72,7 @@ npm i node-sass sass-loader raw-loader
               url: ''
            }
         ],
+        name: '视频源1', // 视频源名称
         poster: '' // 封面图
     }
 ]
@@ -77,7 +85,7 @@ npm i node-sass sass-loader raw-loader
 - 类型: Array < Object >
 - 默认值：[]
 - 参考数据结构：
-```
+```js
 第①种方式：
 [
   {
@@ -161,7 +169,7 @@ npm i node-sass sass-loader raw-loader
 - 类型：Array< Object > | Array< String >
 - 默认值：[]
 - 参考数据结构：
-```
+```js
 第①种方式
 [
   {   
@@ -230,8 +238,6 @@ npm i node-sass sass-loader raw-loader
 |    方法名     | 用法                                | 描述                                   |
 | :-----------: | ----------------------------------- | -------------------------------------- |
 | destroyPlayer | `this.$refs.player.destroyPlayer()` | 销毁当前视频实例（仅适用于单个视频源） |
-|               |                                     |                                        |
-|               |                                     |                                        |
 
 
 

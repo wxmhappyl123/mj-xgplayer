@@ -207,6 +207,13 @@
         default: ''
       },
       /**
+       * 单个视频源名称
+       */
+      videoName: {
+        type: String,
+        default: ''
+      },
+      /**
        * 是否开启自动播放
        */
       autoplay: {
@@ -271,17 +278,13 @@
     data() {
       return {
         // logo宽度
-        logoWidth: 50,
+        logoWidth: 0,
         // 默认logo
         logo: require('./assets/img/logo.png'),
         // 单个播放器对象
         player: null,
         // 播放器实例对象数组
         players: [],
-        // 容器宽度
-        clientWidth: '',
-        // 容器高度
-        clientHeight: '',
         // 容器尺寸样式
         videoStyles: '',
       }
@@ -307,6 +310,7 @@
        * 监听传入的单个视频源
        */
       videoUrl(val) {
+        console.log(this.videoList)
         if (this.videoList.length !== 0) throw new Error('video-list 与 video-url 不能混用')
         // 更新后的值为空时，直接跳出循环
         if (!val) return
@@ -499,7 +503,8 @@
             const videoFixDom = [...document.querySelectorAll('.video-fix')]
             const deleteIndex = videoFixDom.findIndex(item => item.id === rootId)
             // 不改变现有坐标顺序情况下，清空该坐标视频信息
-            this.videoList[deleteIndex] = null
+            // 如果不是单个视频源使用方法，才能执行以下逻辑
+            if (!this.videoUrl.length) this.videoList[deleteIndex] = null
           }
 
         })
@@ -515,11 +520,8 @@
        * @return {null}
        */
       onPlayerDestroy(player) {
-        player.off('error', () => {
-        })
-        player.off('playing', () => {
-        })
-        player.off('destroy', () => {
+        ['error', 'playing', 'destroy'].forEach(event => {
+          player.off(event, () => {})
         })
       },
       /**
@@ -552,7 +554,6 @@
        * @return {null}
        */
       setVideoView() {
-        const videoDom = document.getElementById(`1videoID-${this.hashStr}`)
         const logoBoxDom = document.getElementById(`logoBox1-${this.hashStr}`)
         // 初始化时取首张图片的宽度
         // 播放首个视频后，首张图片会被隐藏，宽度为0
@@ -570,8 +571,6 @@
           }
 
         }
-        this.clientWidth = videoDom.clientWidth
-        this.clientHeight = videoDom.clientHeight
       },
       /**
        * @description 设置分屏样式
@@ -622,9 +621,14 @@
        */
       createPlayers(options, length) {
         const logoBoxDom = document.getElementById(`logoBox${length}-${this.hashStr}`)
-        this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)
+      /*  const currPlayer = this.players[length - 1]
+        if (currPlayer) {
+          currPlayer.destroy()
+          this.players[length - 1] = null
+        }
+        this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)*/
 
-        /*const currPlayer = this.players[length - 1]
+        const currPlayer = this.players[length - 1]
         // 当前player实例已存在，则重新拉流
         if (currPlayer) {
           currPlayer.src = options.url
@@ -632,7 +636,7 @@
           currPlayer.config.url = options.url
         } else {
           this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)
-        }*/
+        }
         // 处理播放器监听事件
         this.handlePlayerEvents(this.players[length - 1], logoBoxDom)
         // 处理视频清晰度
@@ -645,15 +649,18 @@
        */
       createPlayer(options) {
         const logoBoxDom = document.getElementById(`logoBox1-${this.hashStr}`)
-        this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
-
-        /*// 当前player实例已存在，则重新拉流
+       /* if (this.player) {
+          this.player.destroy()
+          this.player = null
+        }
+        this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)*/
+        // 当前player实例已存在，则重新拉流
         if (this.player) {
           this.player.src = options.url
           this.player.config.url = options.url
         } else {
           this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
-        }*/
+        }
         // 处理播放器监听事件
         this.handlePlayerEvents(this.player, logoBoxDom)
         // 处理视频清晰度
