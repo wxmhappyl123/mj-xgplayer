@@ -98,10 +98,11 @@ let closeVideo = function (player) {
       closeBtnDom.removeEventListener(item, () => {
       })
     })
-    player.off('destroy', () => {
-    })
     player.off('play', () => {
     })
+    player.off('destroy', () => {
+    })
+
   })
 }
 Player.install('closeVideo', closeVideo)

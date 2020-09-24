@@ -3,7 +3,7 @@
     <div class="left-tree">
       <ul>
         <li v-for="item of videoData" :key="item.id" @click="toggleCamera(item)">
-          <span>{{item.cameraName}}</span>
+          <span>{{item.name}}</span>
         </li>
       </ul>
     </div>
@@ -24,7 +24,7 @@
       </div>
       <div class="play-content">
         <!--多个视频源测试-->
-        <!--<inphase-player
+        <inphase-player
           :live="false"
           :split-screen="splitScreen"
           :video-list="videoList"
@@ -40,10 +40,10 @@
           <template #logo>
             <img :src="logo" alt="logo" width="80px" height="80px">
           </template>
-        </inphase-player>-->
+        </inphase-player>
 
         <!--单个视频源测试-->
-        <inphase-player
+       <!-- <inphase-player
           :live="false"
           :video-name="name"
           :video-url="url"
@@ -53,7 +53,7 @@
           <template #logo>
             <img :src="logo" alt="logo" width="80px" height="80px">
           </template>
-        </inphase-player>
+        </inphase-player>-->
 
       </div>
     </div>
@@ -113,11 +113,11 @@
        */
       toggleCamera(item) {
         // 多个视频源播放
-        // this.videoList.push(item)
+        this.videoList.push(item)
         // 单个视频源切换,需要同时切换清晰度列表
-        this.url = item.url
+        /*this.url = item.url
         this.name = item.name
-        this.definitionList = item.definitionList
+        this.definitionList = item.definitionList*/
       },
       /**
        * @description 处理视频重复

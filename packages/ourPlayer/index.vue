@@ -37,6 +37,7 @@
   // 执行插件
   import './plugins/closeVideo'
   import './plugins/error'
+  import './plugins/video-name'
   // 自定义样式
   // import '../assets/css/.xgplayer/skin/index.js'
 
@@ -69,6 +70,11 @@
     playbackRate: [0.5, 0.75, 1, 1.5, 2], // 倍速播放
     defaultPlaybackRate: 1.5, // 默认倍速
     ignores: [], // 忽略内部插件
+    customConfig: {
+      videoName: '', // 视频名称
+    },
+    lang: 'zh-cn', // 语言
+
     /*danmu: {
       comments: [
         {
@@ -310,7 +316,6 @@
        * 监听传入的单个视频源
        */
       videoUrl(val) {
-        console.log(this.videoList)
         if (this.videoList.length !== 0) throw new Error('video-list 与 video-url 不能混用')
         // 更新后的值为空时，直接跳出循环
         if (!val) return
@@ -389,8 +394,8 @@
 
         // 新加入的视频url，如果是重复的，则不加入
         let flagIndex = this.videoList.findIndex(item => (item ? item.url : '') === lastVideoUrl)
-        // 找出第一个无视频源播放器实例索引
-        const firstClosedPlayerIndex = this.players.findIndex(player => player.hasClosed ? !(player.hasClosed = false) : false)
+        // 找出第一个无视频源播放器实例索引, 同时满足被关闭的标记和未播放
+        const firstClosedPlayerIndex = this.players.findIndex(player => (player.hasClosed && !player.hasStart) ? !(player.hasClosed = false) : false)
         // 如果找到的坐标就是新加入视频的坐标，则没有重复
         if (flagIndex === len - 1) {
           // 替换首个通过按钮关闭的视频源信息
@@ -432,8 +437,13 @@
       toggleVideo(index) {
         const firstClosedPlayer = this.players[index]
         const pop = this.videoList.pop()
-        firstClosedPlayer.src = pop.url
+        const videoNameTexts = document.querySelectorAll('.video-name-text')
+        let currTextDom
         firstClosedPlayer.config.url = pop.url
+        firstClosedPlayer.config.customConfig.videoName = pop.name
+        firstClosedPlayer.start(pop.url)
+        currTextDom = [...videoNameTexts].find((dom, i) => i === index)
+        currTextDom.innerText = pop.name
         // 找到之后播放同时切换清晰度视频源
         firstClosedPlayer.emit('resourceReady', this.filterDefinition(pop.definitionList, pop.url))
         // 同步播放器实例与视频数组的对应关系
@@ -500,11 +510,11 @@
           if (msg === 'closeVideo') {
             if (this.live) logoBoxDom.style.display = 'block'
             // 伪数组转化为数组
-            const videoFixDom = [...document.querySelectorAll('.video-fix')]
+            /*const videoFixDom = [...document.querySelectorAll('.video-fix')]
             const deleteIndex = videoFixDom.findIndex(item => item.id === rootId)
             // 不改变现有坐标顺序情况下，清空该坐标视频信息
             // 如果不是单个视频源使用方法，才能执行以下逻辑
-            if (!this.videoUrl.length) this.videoList[deleteIndex] = null
+            if (!this.videoUrl.length) this.videoList[deleteIndex] = null*/
           }
 
         })
@@ -594,6 +604,7 @@
         videoOptions.url = videoMsg.url
         videoOptions.poster = videoMsg.poster
         videoOptions.definitionList = videoMsg.definitionList
+        videoOptions.customConfig.videoName = videoMsg.name
         // 相同的配置统一处理
         this.handleSamePlayerOptions(videoOptions)
         this.createPlayers(videoOptions, length)
@@ -610,6 +621,7 @@
         videoOptions.id = `1videoID-${this.hashStr}`
         videoOptions.url = url
         videoOptions.poster = this.poster
+        videoOptions.customConfig.videoName = this.videoName
         this.handleSamePlayerOptions(videoOptions)
         this.createPlayer(videoOptions)
       },
@@ -621,19 +633,19 @@
        */
       createPlayers(options, length) {
         const logoBoxDom = document.getElementById(`logoBox${length}-${this.hashStr}`)
-      /*  const currPlayer = this.players[length - 1]
-        if (currPlayer) {
-          currPlayer.destroy()
-          this.players[length - 1] = null
-        }
-        this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)*/
-
+        // 视频名称dom
+        const videoNameTexts = document.querySelectorAll('.video-name-text')
         const currPlayer = this.players[length - 1]
+        let currTextDom = null
         // 当前player实例已存在，则重新拉流
         if (currPlayer) {
-          currPlayer.src = options.url
           // 同时更改视频配置中的url，避免点击重试按钮时会播放拉之前的流的bug
           currPlayer.config.url = options.url
+          currPlayer.config.customConfig.videoName = options.customConfig.videoName
+          currPlayer.start(options.url)
+          // 找到当前替换的那个视频名称dom
+          currTextDom = [...videoNameTexts].find((dom, index) => index === length - 1)
+          currTextDom.innerText = options.customConfig.videoName
         } else {
           this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)
         }
@@ -649,15 +661,15 @@
        */
       createPlayer(options) {
         const logoBoxDom = document.getElementById(`logoBox1-${this.hashStr}`)
-       /* if (this.player) {
-          this.player.destroy()
-          this.player = null
-        }
-        this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)*/
+        const videoNameText = document.querySelector('.video-name-text')
         // 当前player实例已存在，则重新拉流
         if (this.player) {
-          this.player.src = options.url
+          // 解决重载会回到最初视频源的bug
           this.player.config.url = options.url
+          this.player.config.customConfig.videoName = this.videoName
+          // 重新起播，解决重播会回到最初视频源的bug
+          this.player.start(options.url)
+          videoNameText.innerText = this.videoName
         } else {
           this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
         }
