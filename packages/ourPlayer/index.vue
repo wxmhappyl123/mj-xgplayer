@@ -36,7 +36,8 @@
   import FlvJsPlayer from 'xgplayer-flv.js'
   // 执行插件
   import './plugins/closeVideo'
-  import './plugins/error'
+  import './plugins/mobile-error'
+  import './plugins/pc-error'
   import './plugins/video-name'
   // 自定义样式
   // import '../assets/css/.xgplayer/skin/index.js'
@@ -69,7 +70,7 @@
     poster: '', // 封面图
     playbackRate: [0.5, 0.75, 1, 1.5, 2], // 倍速播放
     defaultPlaybackRate: 1.5, // 默认倍速
-    ignores: [], // 忽略内部插件
+    ignores: ['error'], // 忽略内部插件
     customConfig: {
       videoName: '', // 视频名称
     },
@@ -293,6 +294,8 @@
         players: [],
         // 容器尺寸样式
         videoStyles: '',
+        // 删除视频数据存放映射
+        deleteVideoMap: []
       }
     },
     watch: {
@@ -395,7 +398,16 @@
         // 新加入的视频url，如果是重复的，则不加入
         let flagIndex = this.videoList.findIndex(item => (item ? item.url : '') === lastVideoUrl)
         // 找出第一个无视频源播放器实例索引, 同时满足被关闭的标记和未播放
-        const firstClosedPlayerIndex = this.players.findIndex(player => (player.hasClosed && !player.hasStart) ? !(player.hasClosed = false) : false)
+        const firstClosedPlayerIndex = this.players.findIndex(player => {
+          // 该视频同时满足被关闭和没有被重载
+          if (player.hasClosed && !player.hasReload) {
+            player.hasClosed = false
+            player.hasReload = false
+            return true
+          } else {
+            return false
+          }
+        })
         // 如果找到的坐标就是新加入视频的坐标，则没有重复
         if (flagIndex === len - 1) {
           // 替换首个通过按钮关闭的视频源信息
@@ -496,6 +508,8 @@
         // 视频播放时触发
         // 监听play事件会导致已经播放的视频暂停，但后续视频无法播放
         player.on('playing', ({msg, rootId}) => {
+          let videoFixDom = null, deleteIndex = null
+
           logoBoxDom.style.display = 'none'
           // 移动端同一页面是否只能播放一个视频
           if (this.onlyOnePlay) {
@@ -506,15 +520,30 @@
               }
             })
           }
+
+          if (msg) {
+            videoFixDom = [...document.querySelectorAll('.video-fix')]
+            deleteIndex = videoFixDom.findIndex(item => item.id === rootId)
+          }
+
+
           // 监听通过关闭按钮传递的事件
           if (msg === 'closeVideo') {
             if (this.live) logoBoxDom.style.display = 'block'
-            // 伪数组转化为数组
-            /*const videoFixDom = [...document.querySelectorAll('.video-fix')]
-            const deleteIndex = videoFixDom.findIndex(item => item.id === rootId)
+
             // 不改变现有坐标顺序情况下，清空该坐标视频信息
             // 如果不是单个视频源使用方法，才能执行以下逻辑
-            if (!this.videoUrl.length) this.videoList[deleteIndex] = null*/
+            if (!this.videoUrl.length) {
+              // 加入删除调用映射
+              this.deleteVideoMap[deleteIndex] = this.videoList[deleteIndex]
+              this.videoList[deleteIndex] = null
+            }
+          }
+          // 刷新时，将被清空的视频源数据插入相应位置
+          if (msg === 'pcError') {
+            if (!this.videoUrl.length) {
+              this.videoList[deleteIndex] = this.deleteVideoMap[deleteIndex]
+            }
           }
 
         })

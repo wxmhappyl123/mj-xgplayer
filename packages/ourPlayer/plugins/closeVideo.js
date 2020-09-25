@@ -71,6 +71,7 @@ let closeVideo = function (player) {
       })
       if (isPc) player.controls.style.display = 'none'
       player.hasClosed = true
+      player.hasReload = false
       hasClosedByBtn = true
       showCurrCloseBtn('none')
     })
