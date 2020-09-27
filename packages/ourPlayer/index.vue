@@ -54,6 +54,7 @@
     9: 'width: 33% !important;height: 33% !important;',
     16: 'width: 24% !important;height: 24% !important;',
   }
+  const deleteVideoMap = Array(16).fill(null)
   // 视频参数
   const commonVideoOptions = {
     id: '', // 播放器容器DOM的ID
@@ -73,6 +74,7 @@
     ignores: ['error'], // 忽略内部插件
     customConfig: {
       videoName: '', // 视频名称
+      live: false
     },
     lang: 'zh-cn', // 语言
 
@@ -295,7 +297,7 @@
         // 容器尺寸样式
         videoStyles: '',
         // 删除视频数据存放映射
-        deleteVideoMap: []
+        deleteVideoMap
       }
     },
     watch: {
@@ -398,7 +400,7 @@
         // 新加入的视频url，如果是重复的，则不加入
         let flagIndex = this.videoList.findIndex(item => (item ? item.url : '') === lastVideoUrl)
         // 找出第一个无视频源播放器实例索引, 同时满足被关闭的标记和未播放
-        const firstClosedPlayerIndex = this.players.findIndex(player => {
+        /*const firstClosedPlayerIndex = this.players.findIndex(player => {
           // 该视频同时满足被关闭和没有被重载
           if (player.hasClosed && !player.hasReload) {
             player.hasClosed = false
@@ -407,7 +409,8 @@
           } else {
             return false
           }
-        })
+        })*/
+        const firstClosedPlayerIndex = this.videoList.findIndex(item => item === null)
         // 如果找到的坐标就是新加入视频的坐标，则没有重复
         if (flagIndex === len - 1) {
           // 替换首个通过按钮关闭的视频源信息
@@ -431,6 +434,19 @@
       }
     },
     methods: {
+      /**
+       * @description 销毁所有分屏实例
+       * @return {null}
+       */
+      destroyPlayers() {
+        this.players.forEach(player => {
+          player.src = ''
+          player.config.url = ''
+          player.destroy()
+          player = null
+        })
+        this.players = []
+      },
       /**
        * @description 销毁视频实例
        * @return {null}
@@ -460,6 +476,8 @@
         firstClosedPlayer.emit('resourceReady', this.filterDefinition(pop.definitionList, pop.url))
         // 同步播放器实例与视频数组的对应关系
         this.videoList.splice(index, 1, pop)
+        // 清空该索引上被记录清空的对象
+        this.deleteVideoMap[index] = null
       },
       /**
        * @description 暂停同时满足正在播放与未暂停两个条件的播放器
@@ -486,7 +504,9 @@
        */
       handleSamePlayerOptions(videoOptions) {
         // 在手机模式下或者直播状态下忽略默认error插件
-        if (!Player.sniffer.os.isPc || this.live) videoOptions.ignores = ['error']
+        if (!Player.sniffer.os.isPc || this.live) {
+          videoOptions.customConfig.live = true
+        }
         // 直播模式下，不显示下载按钮
         videoOptions.download = this.live ? false : this.download
         videoOptions.screenShot = this.screenShot
@@ -496,11 +516,13 @@
       },
       /**
        * @description 处理播放器注册事件
-       * @param player {Object} -  播放器实例
-       * @param logoBoxDom {Object} -  默认logo Dom对象
+       * @param player {Object} - 播放器实例
+       * @param length {number | boolean} - 数组长度
        * @return {null}
        */
-      handlePlayerEvents(player, logoBoxDom) {
+      handlePlayerEvents(player, length) {
+        const logoBoxDom = document.getElementById(`logoBox${typeof length === 'number' ? length : 1}-${this.hashStr}`)
+
         // 视频加载失败时触发
         player.on('error', () => {
           this.$emit('play-error', player.error)
@@ -543,6 +565,7 @@
           if (msg === 'pcError') {
             if (!this.videoUrl.length) {
               this.videoList[deleteIndex] = this.deleteVideoMap[deleteIndex]
+              this.deleteVideoMap[deleteIndex] = null
             }
           }
 
@@ -634,6 +657,7 @@
         videoOptions.poster = videoMsg.poster
         videoOptions.definitionList = videoMsg.definitionList
         videoOptions.customConfig.videoName = videoMsg.name
+
         // 相同的配置统一处理
         this.handleSamePlayerOptions(videoOptions)
         this.createPlayers(videoOptions, length)
@@ -661,7 +685,6 @@
        * @return {null}
        */
       createPlayers(options, length) {
-        const logoBoxDom = document.getElementById(`logoBox${length}-${this.hashStr}`)
         // 视频名称dom
         const videoNameTexts = document.querySelectorAll('.video-name-text')
         const currPlayer = this.players[length - 1]
@@ -679,7 +702,7 @@
           this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)
         }
         // 处理播放器监听事件
-        this.handlePlayerEvents(this.players[length - 1], logoBoxDom)
+        this.handlePlayerEvents(this.players[length - 1], length)
         // 处理视频清晰度
         this.emitDefinition(options, length)
       },
@@ -689,7 +712,6 @@
        * @return {null}
        */
       createPlayer(options) {
-        const logoBoxDom = document.getElementById(`logoBox1-${this.hashStr}`)
         const videoNameText = document.querySelector('.video-name-text')
         // 当前player实例已存在，则重新拉流
         if (this.player) {
@@ -703,7 +725,7 @@
           this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
         }
         // 处理播放器监听事件
-        this.handlePlayerEvents(this.player, logoBoxDom)
+        this.handlePlayerEvents(this.player, false)
         // 处理视频清晰度
         this.emitDefinition(options, 1)
       },

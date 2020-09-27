@@ -31,7 +31,6 @@
           :screen-shot="true"
           :download="true"
           :autoplay="true"
-          :cross-origin="true"
           definition-active="hover"
           :default-playback-rate="1"
           @repeat-video="onRepeatVideo"
