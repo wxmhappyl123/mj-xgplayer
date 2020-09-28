@@ -15,7 +15,7 @@ export default [
       }
     ],
     cameraId: '1001',
-    cameraName: '11111',
+    name: '11111',
     url: 'http://182.145.195.238:1936/hls/08103021122A63A2A00.m3u8',
     // url: 'rtsp://Inphase:2KE496r8a@182.145.195.233:9500/DevCode=08102021122A3A0C400/DevAor=08102021122A3A0C400/StreamIndex=0',
     danmu: {
@@ -54,7 +54,7 @@ export default [
       }
     ],
     cameraId: '1002',
-    cameraName: '22222',
+    name: '22222',
     url: 'http://182.145.195.238:1936/hls/08103021122A63A2E00.m3u8',
     danmu: {
       comments: [
@@ -91,7 +91,7 @@ export default [
       }
     ],
     cameraId: '1003',
-    cameraName: '333333',
+    name: '333333',
     url: 'http://182.145.195.238:1936/hls/08103021122A6364C00.m3u8',
     danmu: {
       comments: [
@@ -126,7 +126,7 @@ export default [
       }
     ],
     cameraId: '1004',
-    cameraName: '444444',
+    name: '444444',
     url: 'http://182.145.195.238:1936/hls/08103021122A6365300.m3u8',
     danmu: {
       comments: [
@@ -163,7 +163,7 @@ export default [
       }
     ],
     cameraId: '1005',
-    cameraName: '555555',
+    name: '555555',
     url: 'http://182.145.195.238:1936/hls/08103021122A63A2400.m3u8',
     danmu: {
       comments: [
@@ -200,7 +200,7 @@ export default [
       }
     ],
     cameraId: '1005',
-    cameraName: '666666',
+    name: '666666',
     url: 'http://182.145.195.238:1936/hls/08103021122A63A2800.m3u8',
     danmu: {
       comments: [

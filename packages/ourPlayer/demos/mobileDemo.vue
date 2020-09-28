@@ -18,9 +18,9 @@
 
 <script>
   // 引入inphase视频组件
-  import InphasePlayer from './index'
+  import InphasePlayer from '..'
   // 测试视频数据
-  import m3u8VideoData from './assets/data/m3u8VideoData'
+  import m3u8VideoData from '../assets/data/m3u8VideoData'
   // import mp4VideoData from './assets/data/mp4VideoData'
 
   export default {
@@ -33,7 +33,7 @@
         // 视频源数组
         videoData: [],
         // 默认logo
-        logo: require('./assets/img/logo.png'),
+        logo: require('../assets/img/logo.png'),
       }
     },
     created() {

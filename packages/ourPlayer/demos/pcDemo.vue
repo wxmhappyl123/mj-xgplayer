@@ -61,16 +61,18 @@
 
 <script>
   // 引入inphase视频组件
+  import InphasePlayer from '..'
   // 测试视频数据
-  import m3u8VideoData from './assets/data/m3u8VideoData'
-  import mp4VideoData from './assets/data/mp4VideoData'
+  import m3u8VideoData from '../assets/data/m3u8VideoData'
+  import mp4VideoData from '../assets/data/mp4VideoData'
   export default {
     name: "demo",
     components: {
+      InphasePlayer
     },
     data() {
       return {
-        logo: require('./assets/img/logo.png'),
+        logo: require('../assets/img/logo.png'),
         url: '',
         splitScreen: 1,
         // 与播放器内部数据数组指向同一地址
@@ -89,7 +91,7 @@
         // 弹幕内容
         danmuText: '',
         // 封面图
-        poster: require('./assets/img/截图 (1).png')
+        poster: require('../assets/img/截图 (1).png')
       }
     },
     created() {
