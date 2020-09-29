@@ -5,6 +5,7 @@ export default {
     return {
       // 播放器实例对象数组
       players: [],
+      videoListLen: 0,
     }
   },
   computed: {
@@ -12,9 +13,9 @@ export default {
      *  监听视频数组的变化
      */
     localVideoList() {
-      console.log(11)
       let len = this.videoList.length
-
+      if (this.videoListLen === len) return []
+      this.videoListLen = len
       // 处理视频源混用，两者同时存在，抛出错误
       if (len !== 0 && this.videoUrl !== '') {
         throw new Error('video-list 与 video-url 不能混用')

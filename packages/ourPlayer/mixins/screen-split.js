@@ -1,6 +1,12 @@
 import {videoStyleOptions} from "../assets/constant"
 
 export default {
+  data() {
+    return {
+      // 容器尺寸样式
+      videoStyles: '',
+    }
+  },
   watch: {
     /**
      * 监听分屏数变化

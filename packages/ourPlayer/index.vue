@@ -86,8 +86,6 @@
         logoWidth: 0,
         // 默认logo
         logo: require('./assets/img/logo.png'),
-        // 容器尺寸样式
-        videoStyles: '',
         // 删除视频数据存放映射
         deleteVideoMap
       }
