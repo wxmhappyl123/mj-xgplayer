@@ -5,6 +5,7 @@ export default {
     return {
       // 容器尺寸样式
       videoStyles: '',
+      hasChangeSplitNum: false
     }
   },
   watch: {
@@ -13,6 +14,7 @@ export default {
      */
     splitScreenNum(val) {
       let len = this.videoList.length
+      this.hasChangeSplitNum = true
       if (len > val) {
         this.videoList.splice(val, len - val)
         this.players.forEach((player, index) => {

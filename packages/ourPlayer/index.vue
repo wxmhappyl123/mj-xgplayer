@@ -105,7 +105,6 @@
       /**
        * @description 处理相同的配置
        * @param videoOptions {Object} - 配置对象
-       * @return {null}
        */
       handleSamePlayerOptions(videoOptions) {
         // 在手机模式下或者直播状态下忽略默认error插件

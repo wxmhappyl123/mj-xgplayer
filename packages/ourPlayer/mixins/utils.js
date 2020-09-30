@@ -38,7 +38,6 @@ export default {
     /**
      * @description 切换视频源相关参数
      * @param index {Number} - 首个关闭的视频数组下标
-     * @return {null}
      */
     toggleVideo(index) {
       const firstClosedPlayer = this.players[index]

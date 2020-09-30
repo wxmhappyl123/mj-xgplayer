@@ -24,7 +24,6 @@ export default {
     /**
      * @description 初始化单个视频源
      * @param url {String} - 视频源地址
-     * @return {null}
      */
     initVideo(url) {
       const videoOptions = {...commonVideoOptions}
@@ -40,7 +39,6 @@ export default {
     /**
      * @description 创建单个视频对象
      * @param options {Object} - 配置对象
-     * @return {null}
      */
     createPlayer(options) {
       const videoNameText = document.querySelector('.video-name-text')

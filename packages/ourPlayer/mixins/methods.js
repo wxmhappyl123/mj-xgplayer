@@ -2,7 +2,6 @@ export default {
   methods: {
     /**
      * @description 暂停同时满足正在播放与未暂停两个条件的播放器
-     * @return {null}
      */
     videoPause() {
       if (this.player.hasStart && !this.player.paused) {
@@ -11,7 +10,6 @@ export default {
     },
     /**
      * @description 销毁所有分屏实例
-     * @return {null}
      */
     destroyPlayers() {
       this.players.forEach(player => {
@@ -24,7 +22,6 @@ export default {
     },
     /**
      * @description 销毁视频实例
-     * @return {null}
      */
     destroyPlayer() {
       this.player.src = ''

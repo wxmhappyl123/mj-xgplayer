@@ -4,7 +4,6 @@ export default {
      * @description 处理播放器注册事件
      * @param player {Object} - 播放器实例
      * @param length {number | boolean} - 数组长度
-     * @return {null}
      */
     handlePlayerEvents(player, length) {
       const logoBoxDom = document.getElementById(`logoBox${typeof length === 'number' ? length : 1}-${this.hashStr}`)
@@ -65,7 +64,6 @@ export default {
     /**
      * @description 注销播放器实例事件
      * @param player {Object} - 播放器实例
-     * @return {null}
      */
     onPlayerDestroy(player) {
       ['error', 'playing', 'destroy'].forEach(event => {

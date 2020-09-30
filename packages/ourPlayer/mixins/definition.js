@@ -4,7 +4,6 @@ export default {
      * @description 触发清晰度设置
      * @param options {Object} - 配置对象
      * @param length {Number} - 数组下标
-     * @return {null}
      */
     emitDefinition(options, length) {
       /*
