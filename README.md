@@ -9,29 +9,17 @@ import 'mj-inphase-component/lib/mj-inphase-component.css';
 ```
 全局注册
 ```
-import mj-inphase-component from 'mj-inphase-component';
-Vue.use(mj-inphase-component);
+import mjInphaseComponent from 'mj-inphase-component';
+Vue.use(mjInphaseComponent);
 ```
 部分引用
 ```
-import {inphase-player} from 'mj-inphase-component';
+import {inphasePlayer} from 'mj-inphase-component';
 ```
 inphase-player 是依赖于西瓜视频 虽然直接 install了mj-inphase-component也会自动下载西瓜视频相关组件
 如果报错也可以按照下面步骤从新安装西瓜视频相关组件，一般可以省略
 ```
- npm i xgplayer
-```
-安装hls插件
-```
- npm i xgplayer-hls.js
-```
-安装mp4插件
-```
-npm i xgplayer-mp4
-```
-安装flv插件
-```
-npm i xgplayer-flv.js
+ npm i xgplayer xgplayer-hls.js xgplayer-mp4 xgplayer-flv.js
 ```
 如果需要自定义样式，安装以下`loader`（自定义样式功能暂未开放）
 ```

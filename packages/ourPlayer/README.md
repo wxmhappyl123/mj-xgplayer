@@ -1,19 +1,7 @@
 # 起步
-安装西瓜视频
+安装西瓜视频及其必要插件
 ```
- npm i xgplayer
-```
-安装hls插件
-```
- npm i xgplayer-hls.js
-```
-安装mp4插件
-```
-npm i xgplayer-mp4
-```
-安装flv插件
-```
-npm i xgplayer-flv.js
+ npm i xgplayer xgplayer-hls.js xgplayer-mp4 xgplayer-flv.js
 ```
 将整个`ourPlayer`文件夹放入组件目录`components`下，使用该组件
 ```js
@@ -62,11 +50,11 @@ npm i node-sass sass-loader raw-loader
            {
               name: '标清', // 渲染为清晰度切换播放栏选项
               url: ''
-           }，
+           },
            {
               name: '高清',
               url: ''
-           }，
+           },
            {
               name: '超清',
               url: ''
@@ -86,16 +74,16 @@ npm i node-sass sass-loader raw-loader
 - 默认值：[]
 - 参考数据结构：
 ```js
-第①种方式：
+// 第①种方式：
 [
   {
      name: '标清', // 渲染为清晰度切换播放栏选项
      url: ''
-  }，
+  },
   {
      name: '高清',
      url: ''
-  }，
+  },
   {
      name: '超清',
      url: ''
@@ -170,7 +158,7 @@ npm i node-sass sass-loader raw-loader
 - 默认值：[]
 - 参考数据结构：
 ```js
-第①种方式
+// 第①种方式
 [
   {   
       duration: 15000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
@@ -189,7 +177,7 @@ npm i node-sass sass-loader raw-loader
       mode: 'scroll' //显示模式，top顶部居中，bottom底部居中，scroll滚动，默认为scroll
   }
 ]
-或第②种方式
+// 或第②种方式
 [
   '长弹幕长弹幕长弹幕长弹幕长弹幕长弹幕',
   '长弹幕长弹幕长弹幕长弹幕长弹幕长弹幕',
