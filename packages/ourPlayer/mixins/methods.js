@@ -12,22 +12,28 @@ export default {
      * @description 销毁所有分屏实例
      */
     destroyPlayers() {
-      this.players.forEach(player => {
-        player.src = ''
-        player.config.url = ''
-        player.destroy()
-        player = null
-      })
-      this.players = []
+      if (this.players.length) {
+        this.players.forEach(player => {
+          player.src = ''
+          player.config.url = ''
+          player.destroy()
+          player = null
+        })
+        this.players = []
+      }
+
     },
     /**
      * @description 销毁视频实例
      */
     destroyPlayer() {
-      this.player.src = ''
-      this.player.config.url = ''
-      this.player.destroy()
-      this.player = null
+      if (this.player) {
+        this.player.src = ''
+        this.player.config.url = ''
+        this.player.destroy()
+        this.player = null
+      }
+
     },
   }
 }
