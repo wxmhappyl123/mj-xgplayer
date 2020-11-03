@@ -65,8 +65,7 @@ npm i node-sass sass-loader raw-loader
     }
 ]
 ```
-- 描述：多个视频源。支持分屏功能。
-        该参数不能与`video-url`混用，否则可能会有意料之外的错误。
+- 描述：多个视频源。支持分屏功能。该参数不能与`video-url`混用，否则可能会有意料之外的错误。
         
 ### 清晰度
 - 配置项：`definition-list`
@@ -90,9 +89,7 @@ npm i node-sass sass-loader raw-loader
   }
 ]
 ```
-- 描述：仅在通过`video-url`传入单个视频源时使用。
-        切换`video-url`时，需要同时切换该选项，保持视频源与该视频源清晰度资源同步。
-        多个视频源需要通过新增对象属性`definitionList`来使用。
+- 描述：仅在通过`video-url`传入单个视频源时使用。切换`video-url`时，需要同时切换该选项，保持视频源与该视频源清晰度资源同步。多个视频源需要通过新增对象属性`definitionList`来使用。
         
 ### 清晰度触发方式
 - 配置项：`definition-active`

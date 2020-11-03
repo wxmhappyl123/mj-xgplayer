@@ -17,7 +17,6 @@ export default [
     cameraId: '1001',
     name: '11111',
     url: 'http://182.145.195.238:1936/hls/08103021122A63A2A00.m3u8',
-    // url: 'rtsp://Inphase:2KE496r8a@182.145.195.233:9500/DevCode=08102021122A3A0C400/DevAor=08102021122A3A0C400/StreamIndex=0',
     danmu: {
       comments: [
         {
