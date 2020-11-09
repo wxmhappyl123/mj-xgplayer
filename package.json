@@ -1,6 +1,6 @@
 {
   "name": "mj-inphase-component",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Used for magic mirror video playback plug-in",
   "private": false,
   "keywords": [
