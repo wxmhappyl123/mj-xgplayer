@@ -16,7 +16,7 @@ export default [
     ],
     cameraId: '1001',
     name: '11111',
-    url: 'http://182.145.195.238:1936/hls/08103021122A63A2A00.m3u8',
+    url: 'http://222.213.16.50:43000/live/0220108ededc9f8a700_1606808617.flv',
     danmu: {
       comments: [
         {
@@ -54,7 +54,7 @@ export default [
     ],
     cameraId: '1002',
     name: '22222',
-    url: 'http://182.145.195.238:1936/hls/08103021122A63A2E00.m3u8',
+    url: '//sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
     danmu: {
       comments: [
         {

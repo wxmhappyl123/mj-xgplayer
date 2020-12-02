@@ -28,7 +28,13 @@ export default {
     initVideo(url) {
       const videoOptions = {...commonVideoOptions}
       // flv格式视频需要开启直播选项
-      if (this.suffixParser(url) === '.flv') videoOptions.isLive = this.live
+      if (this.suffixParser(url) === '.flv') {
+        videoOptions.flvOptionalConfig = {
+          type: 'flv',
+          isLive: this.live,
+          enableWorker: true
+        }
+      }
       videoOptions.id = `1videoID-${this.hashStr}`
       videoOptions.url = url
       videoOptions.poster = this.poster

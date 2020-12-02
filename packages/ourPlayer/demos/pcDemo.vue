@@ -25,7 +25,7 @@
       <div class="play-content">
         <!--多个视频源测试-->
         <inphase-player
-          :live="false"
+          :live="true"
           :split-screen="splitScreen"
           :video-list="videoList"
           :screen-shot="true"
@@ -95,8 +95,8 @@
       }
     },
     created() {
-        // this.videoData = m3u8VideoData
-        this.videoData = mp4VideoData
+        this.videoData = m3u8VideoData
+        // this.videoData = mp4VideoData
     },
     methods: {
       /**
