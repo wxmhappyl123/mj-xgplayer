@@ -112,11 +112,7 @@
           videoOptions.customConfig.live = true
         }
         // 直播模式下，不显示下载按钮
-        videoOptions.download = this.live ? false : this.download
-        videoOptions.screenShot = this.screenShot
-        videoOptions.autoplay = this.autoplay
-        videoOptions.definitionActive = this.definitionActive
-        videoOptions.defaultPlaybackRate = this.defaultPlaybackRate
+        videoOptions.download = this.live ? false : !!this.xgConfig.download
       },
       /**
        * @description 根据不同的视频源格式创建不同的player实例

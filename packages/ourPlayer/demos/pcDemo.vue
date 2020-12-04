@@ -25,13 +25,15 @@
       <div class="play-content">
         <!--多个视频源测试-->
         <inphase-player
-          :live="true"
+          :live="false"
           :split-screen="splitScreen"
           :video-list="videoList"
-          :screen-shot="true"
-          :download="true"
-          :autoplay="true"
-          definition-active="hover"
+          :xg-config="{
+            download: true,
+            screenShot: true,
+            autoplay: true,
+            definitionActive: 'hover'
+          }"
           :default-playback-rate="1"
           @repeat-video="onRepeatVideo"
           @play-error="onPlayError"
@@ -42,17 +44,23 @@
         </inphase-player>
 
         <!--单个视频源测试-->
-       <!-- <inphase-player
-          :live="false"
-          :video-name="name"
-          :video-url="url"
-          :definition-list="definitionList"
-          :poster="poster"
-        >
-          <template #logo>
-            <img :src="logo" alt="logo" width="80px" height="80px">
-          </template>
-        </inphase-player>-->
+       <!--  <inphase-player
+           :live="false"
+           :video-name="name"
+           :video-url="url"
+           :definition-list="definitionList"
+           :poster="poster"
+           :xgConfig="{
+            download: true,
+            screenShot: true,
+            autoplay: true,
+            definitionActive: 'hover'
+          }"
+         >
+           <template #logo>
+             <img :src="logo" alt="logo" width="80px" height="80px">
+           </template>
+         </inphase-player>-->
 
       </div>
     </div>
@@ -65,6 +73,7 @@
   // 测试视频数据
   import m3u8VideoData from '../assets/data/m3u8VideoData'
   import mp4VideoData from '../assets/data/mp4VideoData'
+
   export default {
     name: "demo",
     components: {
@@ -81,8 +90,8 @@
         videoData: [],
         // 单个视频清晰度数据
         definitionList: [
-           {name: '高清', url: ''},
-           {name: '超清', url: ''}
+          {name: '高清', url: ''},
+          {name: '超清', url: ''}
         ],
         // 视频名称
         name: '',
@@ -95,8 +104,8 @@
       }
     },
     created() {
-        this.videoData = m3u8VideoData
-        // this.videoData = mp4VideoData
+      this.videoData = m3u8VideoData
+      // this.videoData = mp4VideoData
     },
     methods: {
       /**
@@ -116,7 +125,7 @@
         // 多个视频源播放
         this.videoList.push(item)
         // 单个视频源切换,需要同时切换清晰度列表
-        /*this.url = item.url
+       /* this.url = item.url
         this.name = item.name
         this.definitionList = item.definitionList*/
       },
@@ -189,6 +198,7 @@
         justify-content: space-between;
         align-items: center;
       }
+
       .play-content {
         width: 100%;
         height: 90vh;

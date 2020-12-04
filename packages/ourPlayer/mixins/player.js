@@ -26,7 +26,7 @@ export default {
      * @param url {String} - 视频源地址
      */
     initVideo(url) {
-      const videoOptions = {...commonVideoOptions}
+      const videoOptions = {...commonVideoOptions, ...this.xgConfig}
       // flv格式视频需要开启直播选项
       if (this.suffixParser(url) === '.flv') {
         videoOptions.flvOptionalConfig = {
@@ -34,6 +34,8 @@ export default {
           isLive: this.live,
           enableWorker: true
         }
+      } else if (this.suffixParser(url) === '.m3u8') {
+        videoOptions.isLive = this.live
       }
       videoOptions.id = `1videoID-${this.hashStr}`
       videoOptions.url = url

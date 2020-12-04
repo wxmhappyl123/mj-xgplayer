@@ -12,10 +12,6 @@ import 'mj-inphase-component/lib/mj-inphase-component.css';
 import mjInphaseComponent from 'mj-inphase-component';
 Vue.use(mjInphaseComponent);
 ```
-部分引用
-```
-import {inphasePlayer} from 'mj-inphase-component';
-```
 inphase-player 是依赖于西瓜视频 虽然直接 install了mj-inphase-component也会自动下载西瓜视频相关组件
 如果报错也可以按照下面步骤从新安装西瓜视频相关组件，一般可以省略
 ```
@@ -115,15 +111,6 @@ npm i node-sass sass-loader raw-loader
       切换`video-url`时，需要同时切换该选项，保持视频源与该视频源清晰度资源同步。
       多个视频源需要通过新增对象属性`definitionList`来使用。
       
-
-### 清晰度触发方式
-
-- 配置项：`definition-active`
-- 类型：String
-- 默认值：'hover'
-- 参考值：'hover' | 'click'
-- 描述：通过不同的触发方式来显示清晰度切换列表。
-
 ### 直播
 
 - 配置项：`live`
@@ -133,14 +120,6 @@ npm i node-sass sass-loader raw-loader
 - 描述：开启直播，支持直播视频流。组件只能通过该参数判断当前视频源是否为
       直播流，所以请根据当前业务进行严格区分，否则会有意料之外的结果。
 
-### 截屏
-
-- 配置项：`screen-shot`
-- 类型: Boolean
-- 默认值：true
-- 参考值：true | false
-- 描述：是否开启截屏功能。
-
 ### 封面图
 
 - 配置项：`poster`
@@ -148,22 +127,6 @@ npm i node-sass sass-loader raw-loader
 - 默认值：''
 - 描述：当播放器初始化后在用户点击播放按钮前显示的图像。
       多个视频源需要通过新增对象属性`poster`来使用。
-
-### 下载
-
-- 配置项：`download`
-- 类型: Boolean
-- 默认值：true
-- 参考值：true | false
-- 描述：是否开启下载功能。
-
-### 自动播放
-
-- 配置项：`autoplay`
-- 类型：Boolean
-- 默认值：true
-- 参考值：true | false
-- 描述：是否开启自动播放功能。
 
 ### 唯一视频播放
 
@@ -173,52 +136,20 @@ npm i node-sass sass-loader raw-loader
 - 参考值：true | false
 - 描述：在同一个页面是否只允许播放一个视频。仅支持通过`video-url`传入的视频源。
 
-
-### 默认倍速
-
-- 配置项：`default-playback-rate`
-- 类型：Number
-- 默认值：1
-- 参考值：0.5 | 0.75 | 1 | 1.5 | 2
-- 描述：设置默认倍速。
-
-### 弹幕(暂未支持)
-
-- 配置项：`danmu`
-- 类型：Array< Object > | Array< String >
-- 默认值：[]
-- 参考数据结构：
-
-```js
-// 第①种方式
-[
-  {   
-      duration: 15000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
-      start: 3000, //弹幕出现时间，毫秒
-      prior: true, //该条弹幕优先显示，默认false
-      color: true, //该条弹幕为彩色弹幕，默认false
-      txt: '长弹幕长弹幕长弹幕长弹幕长弹幕长弹幕', //弹幕文字内容
-      style: {  //弹幕自定义样式
-               color: '#ff9500',
-               fontSize: '20px',
-               border: 'solid 1px #ff9500',
-               borderRadius: '50px',
-               padding: '5px 11px',
-               backgroundColor: 'rgba(255, 255, 255, 0.1)'
-             },
-      mode: 'scroll' //显示模式，top顶部居中，bottom底部居中，scroll滚动，默认为scroll
-  }
-]
-// 或第②种方式
-[
-  '长弹幕长弹幕长弹幕长弹幕长弹幕长弹幕',
-  '长弹幕长弹幕长弹幕长弹幕长弹幕长弹幕',
-  '长弹幕长弹幕长弹幕长弹幕长弹幕长弹幕'
-]
+### 西瓜播放器原始配置
+- 配置项：`xg-config`
+- 类型：Object
+- 默认值：{}
+- 参考值：
 ```
-
-- 描述：仅适用于单个视频源添加弹幕内容。使用第①种方式，数组元素为对象，可以对弹幕进行详细配置。
-  使用第②种方式，数组元素为字符串，可以快捷得添加默认配置的弹幕。
+{
+     download: true,
+     screenShot: true,
+     autoplay: true,
+     definitionActive: 'hover'
+}
+```
+- 描述：西瓜播放器原始配置，只列出几个常用配置项，详细请参考西瓜播放器官网配置。
 
 ### 默认logo
 

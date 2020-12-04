@@ -64,7 +64,7 @@ export default {
      */
     initVideos(videoMsg, length) {
 
-      const videoOptions = {...commonVideoOptions}
+      const videoOptions = {...commonVideoOptions, ...this.xgConfig}
       // flv格式视频需要开启直播选项
       if (this.suffixParser(videoMsg.url) === '.flv') {
         videoOptions.flvOptionalConfig = {
@@ -72,6 +72,8 @@ export default {
           isLive: this.live,
           enableWorker: true
         }
+      } else if (this.suffixParser(videoMsg.url) === '.m3u8') {
+        videoOptions.isLive = this.live
       }
       videoOptions.id = `${length}videoID-${this.hashStr}`
 

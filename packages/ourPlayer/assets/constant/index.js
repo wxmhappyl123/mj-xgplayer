@@ -15,79 +15,14 @@ export const commonVideoOptions = {
   url: '', // 视频源
   width: 0, // 宽度
   height: 0, // 高度
-  isLive: false, // flv格式视频流是否开启直播
   playsinline: true, // 开启ios和微信的内联模式
-  screenShot: true,// 是否开启截图
-  autoplay: true, // 是否自动播放
-  download: true, //是否下载视频
-  pip: false, // 是否开启画中画
-  definitionActive: 'hover', // 修改清晰度控件的触发方式
   poster: '', // 封面图
-  playbackRate: [0.5, 0.75, 1, 1.5, 2], // 倍速播放
-  defaultPlaybackRate: 1.5, // 默认倍速
   ignores: ['error'], // 忽略内部插件
   customConfig: {
     videoName: '', // 视频名称
     live: false
   },
   lang: 'zh-cn', // 语言
-
-  /*danmu: {
-    comments: [
-      {
-        duration: 15000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
-        id: '1', //弹幕id，需唯一
-        start: 1000, //弹幕出现时间，毫秒
-        prior: false, //该条弹幕优先显示，默认false
-        color: true, //该条弹幕为彩色弹幕，默认false
-        txt: '我是一条孤独的弹幕~~~', //弹幕文字内容
-        style: {  //弹幕自定义样式
-          color: '#ff9500',
-          fontSize: '20px',
-        }
-      },{
-        duration: 15000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
-        id: '2', //弹幕id，需唯一
-        start: 1000, //弹幕出现时间，毫秒
-        prior: false, //该条弹幕优先显示，默认false
-        color: true, //该条弹幕为彩色弹幕，默认false
-        txt: '我是一条孤独的弹幕~~~', //弹幕文字内容
-        style: {  //弹幕自定义样式
-          color: '#ff9500',
-          fontSize: '20px',
-        }
-      },
-      {
-        duration: 15000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
-        id: '3', //弹幕id，需唯一
-        start: 1000, //弹幕出现时间，毫秒
-        prior: false, //该条弹幕优先显示，默认false
-        color: true, //该条弹幕为彩色弹幕，默认false
-        txt: '我是一条孤独的弹幕~~~', //弹幕文字内容
-        style: {  //弹幕自定义样式
-          color: '#ff9500',
-          fontSize: '20px',
-        }
-      },
-      {
-        duration: 15000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
-        id: '4', //弹幕id，需唯一
-        start: 1000, //弹幕出现时间，毫秒
-        prior: false, //该条弹幕优先显示，默认false
-        color: true, //该条弹幕为彩色弹幕，默认false
-        txt: '我是一条孤独的弹幕~~~', //弹幕文字内容
-        style: {  //弹幕自定义样式
-          color: '#ff9500',
-          fontSize: '20px',
-        }
-      }
-
-    ],  //弹幕数组
-    area: {  //弹幕显示区域
-      start: 0, //区域顶部到播放器顶部所占播放器高度的比例
-      end: 1 //区域底部到播放器顶部所占播放器高度的比例
-    },
-  },*/
 }
 // 弹幕参数
 export const commonDanmuOptions = {
@@ -112,12 +47,11 @@ export const props = {
     type: Boolean,
     default: false
   },
-  /**
-   * 是否开启截屏
-   * */
-  screenShot: {
-    type: Boolean,
-    default: true
+  xgConfig: {
+    type: Object,
+    default() {
+      return {}
+    }
   },
   /**
    * 封面图
@@ -125,20 +59,6 @@ export const props = {
   poster: {
     type: String,
     default: ''
-  },
-  /**
-   * 是否开启下载
-   * */
-  download: {
-    type: Boolean,
-    default: true
-  },
-  /**
-   * 是否开启画中画
-   * */
-  pip: {
-    type: Boolean,
-    default: false
   },
   /**
    *  分屏数
@@ -175,13 +95,6 @@ export const props = {
     default: ''
   },
   /**
-   * 是否开启自动播放
-   */
-  autoplay: {
-    type: Boolean,
-    default: true
-  },
-  /**
    * 清晰度数据
    */
   definitionList: {
@@ -191,17 +104,6 @@ export const props = {
     }
   },
   /**
-   * 清晰度列表触发方式
-   */
-  definitionActive: {
-    type: String,
-    validator: function (value) {
-      // 这个值必须匹配下列数字中的一个
-      return ['hover', 'click'].indexOf(value) !== -1
-    },
-    default: 'hover'
-  },
-  /**
    * 弹幕数据
    */
   danmu: {
@@ -209,17 +111,6 @@ export const props = {
     default() {
       return []
     }
-  },
-  /**
-   * 默认倍速
-   */
-  defaultPlaybackRate: {
-    type: Number,
-    validator: function (value) {
-      // 这个值必须匹配下列数字中的一个
-      return [0.5, 0.75, 1, 1.5, 2].indexOf(value) !== -1
-    },
-    default: 1
   },
   /**
    * 同一个页面是否只允许一个视频播放
