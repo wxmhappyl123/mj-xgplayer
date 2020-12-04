@@ -12,6 +12,10 @@ import 'mj-inphase-component/lib/mj-inphase-component.css';
 import mjInphaseComponent from 'mj-inphase-component';
 Vue.use(mjInphaseComponent);
 ```
+在组件中使用
+```
+<inphase-player></inphase-player> // 必须使用该标签
+```
 inphase-player 是依赖于西瓜视频 虽然直接 install了mj-inphase-component也会自动下载西瓜视频相关组件
 如果报错也可以按照下面步骤从新安装西瓜视频相关组件，一般可以省略
 ```
