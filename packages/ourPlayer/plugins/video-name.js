@@ -21,7 +21,7 @@ let videoName = function (player) {
         color: #ffffffa1;
         font-size: 18px;
         ">
-        <span style="line-height: 38px;" class="video-name-text">${videoName}</span>
+        <span style="line-height: 38px;padding-left: 10px;" class="video-name-text">${videoName}</span>
         </div>` // 关闭按钮样式
     const videoNameDom = util.createDom('inphase-video-name', videoNameHtml, {}, 'video-name') // 创建按钮标签元素
     root.appendChild(videoNameDom) // 加入根元素

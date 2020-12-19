@@ -103,10 +103,16 @@ export default {
         // 同时更改视频配置中的url，避免点击重试按钮时会播放拉之前的流的bug
         currPlayer.config.url = options.url
         currPlayer.config.customConfig.videoName = options.customConfig.videoName
-        currPlayer.start(options.url)
-        // 找到当前替换的那个视频名称dom
-        currTextDom = [...videoNameTexts].find((dom, index) => index === length - 1)
-        currTextDom.innerText = options.customConfig.videoName
+        if (this.live) {
+          currPlayer.src = options.url
+        } else {
+          currPlayer.start(options.url)
+        }
+        if (videoNameTexts) {
+          // 找到当前替换的那个视频名称dom
+          currTextDom = [...videoNameTexts].find((dom, index) => index === length - 1)
+          currTextDom.innerText = options.customConfig.videoName
+        }
       } else {
         this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)
       }

@@ -56,8 +56,13 @@ export default {
         this.player.config.url = options.url
         this.player.config.customConfig.videoName = this.videoName
         // 重新起播，解决重播会回到最初视频源的bug
-        this.player.start(options.url)
-        videoNameText.innerText = this.videoName
+        if (this.live) {
+          this.player.src = options.url
+        } else {
+          this.player.start(options.url)
+        }
+        if (videoNameText) videoNameText.innerText = this.videoName
+
       } else {
         this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
       }
