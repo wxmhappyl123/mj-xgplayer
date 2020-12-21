@@ -112,6 +112,7 @@ export default {
           // 找到当前替换的那个视频名称dom
           currTextDom = [...videoNameTexts].find((dom, index) => index === length - 1)
           currTextDom.innerText = options.customConfig.videoName
+          currTextDom.parentNode.style.display = 'block'
         }
       } else {
         this.players[length - 1] = this.distinguishPlayerType(this.suffixParser(options.url), options)

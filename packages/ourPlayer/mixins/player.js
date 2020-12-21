@@ -61,8 +61,10 @@ export default {
         } else {
           this.player.start(options.url)
         }
-        if (videoNameText) videoNameText.innerText = this.videoName
-
+        if (videoNameText) {
+          videoNameText.innerText = this.videoName
+          videoNameText.parentNode.style.display = 'block'
+        }
       } else {
         this.player = this.distinguishPlayerType(this.suffixParser(options.url), options)
       }

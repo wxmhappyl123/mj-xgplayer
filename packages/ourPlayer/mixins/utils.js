@@ -46,9 +46,17 @@ export default {
       let currTextDom
       firstClosedPlayer.config.url = pop.url
       firstClosedPlayer.config.customConfig.videoName = pop.name
-      firstClosedPlayer.start(pop.url)
-      currTextDom = [...videoNameTexts].find((dom, i) => i === index)
-      currTextDom.innerText = pop.name
+      if (this.live) {
+        firstClosedPlayer.src = pop.url
+      } else {
+        firstClosedPlayer.start(pop.url)
+      }
+      if (videoNameTexts) {
+        // 找到当前替换的那个视频名称dom
+        currTextDom = [...videoNameTexts].find((dom, i) => i === index)
+        currTextDom.innerText = pop.name
+        currTextDom.parentNode.style.display = 'block'
+      }
       // 找到之后播放同时切换清晰度视频源
       firstClosedPlayer.emit('resourceReady', this.filterDefinition(pop.definitionList, pop.url))
       // 同步播放器实例与视频数组的对应关系

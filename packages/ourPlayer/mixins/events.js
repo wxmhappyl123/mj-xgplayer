@@ -41,9 +41,11 @@ export default {
           // 不改变现有坐标顺序情况下，清空该坐标视频信息
           // 如果不是单个视频源使用方法，才能执行以下逻辑
           if (!this.videoUrl.length) {
+            const videoNameTexts = document.querySelectorAll('.video-name-text')
             // 加入删除调用映射
             this.deleteVideoMap[deleteIndex] = this.videoList[deleteIndex]
             this.videoList[deleteIndex] = null
+            if (videoNameTexts) videoNameTexts[deleteIndex].parentNode.style.display = 'none'
           }
         }
         // 刷新时，将被清空的视频源数据插入相应位置

@@ -34,7 +34,6 @@
             autoplay: true,
             definitionActive: 'hover'
           }"
-          :default-playback-rate="1"
           @repeat-video="onRepeatVideo"
           @play-error="onPlayError"
         >
