@@ -33,7 +33,7 @@
   /*插件*/
 
   // 关闭按钮
-  import './plugins/closeVideo'
+  import './plugins/close-btn'
   // 移动端错误处理
   import './plugins/mobile-error'
   // PC端错误处理

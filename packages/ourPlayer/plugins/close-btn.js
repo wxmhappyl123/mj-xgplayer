@@ -1,6 +1,6 @@
 import Player from 'xgplayer'
 
-let closeVideo = function (player) {
+let closeBtn = function (player) {
   const util = Player.util, // 内置工具函数
     root = player.root // 播放器实例根元素DOM
   const isPc = Player.sniffer.os.isPc // 是否在PC端
@@ -66,7 +66,7 @@ let closeVideo = function (player) {
       e.stopPropagation()
       player.src = ''
       player.emit('playing', {
-        msg: 'closeVideo',
+        msg: 'closeBtn',
         rootId: root.id
       })
       if (isPc) player.controls.style.display = 'none'
@@ -106,4 +106,4 @@ let closeVideo = function (player) {
 
   })
 }
-Player.install('closeVideo', closeVideo)
+Player.install('closeBtn', closeBtn)

@@ -15,8 +15,8 @@ export default [
       }
     ],
     cameraId: '1001',
-    name: '11111',
-    url: 'http://222.213.16.50:43000/live/0220108ededc9f8a700_1606808617.flv',
+    name: '测试111',
+    url: 'http://222.213.16.51:8050/M3u8File?BEAREREYJHBG_30203FCDF0A0254AC00-30203FCDF0A0254AC00_1609723349_1609723652.m3u8',
     danmu: {
       comments: [
         {
@@ -54,7 +54,7 @@ export default [
     ],
     cameraId: '1002',
     name: '22222',
-    url: '//sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
+    url:"http://222.213.16.51:8050/M3u8File?BEAREREYJHBG_30203FCDF0A0254AC00-30203FCDF0A0254AC00_1609723652_1609723955.m3u8",
     danmu: {
       comments: [
         {
@@ -91,7 +91,7 @@ export default [
     ],
     cameraId: '1003',
     name: '333333',
-    url: 'http://182.145.195.238:1936/hls/08103021122A6364C00.m3u8',
+    url:"http://222.213.16.51:8050/M3u8File?BEAREREYJHBG_30203FCDF0A0254AC00-30203FCDF0A0254AC00_1609723955_1609724258.m3u8",
     danmu: {
       comments: [
         {
